@@ -3,7 +3,7 @@
 > **A developer productivity and project management platform built to bring projects, tasks, learning goals, notes, and progress into one workspace.**
 
 **Status:** In active development  
-**Project type:** Portfolio project and learning platform  
+**Project type:**Learning platform  
 **Frontend:** React, TypeScript, Vite, Tailwind CSS  
 **State management:** Zustand and Redux Toolkit (planned for appropriate use cases)  
 **Backend:** Planned — details will be added when the backend architecture is selected
