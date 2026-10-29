@@ -2,11 +2,12 @@ import { useCallback, useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
-import { buttonStyles } from "@/components/ui/buttons";
-import { MobileSidebar } from "@/components/landing/MobileSidebar";
-import { navLinks } from "@/data/nav";
+import { buttonStyles } from "@/components/ui/buttonStyles";
+import { MobileSidebar } from "@/components/Sidebar/MobileSidebar";
+import { navLinks } from "./nav";
 import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "../mode-toggle";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -44,7 +45,7 @@ export function Navbar() {
                 "hidden md:inline-flex",
               )}
             >
-              <Icon name={theme === "dark" ? "sun" : "moon"} />
+              <ModeToggle/>
             </button>
 
             <a
