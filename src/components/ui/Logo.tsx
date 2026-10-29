@@ -24,7 +24,7 @@ export function Logo({
         aria-hidden="true"
       >
         <span className="h-1.5 w-5 rounded-sm bg-primary" />
-        <span className="h-1.5 w-3 rounded-sm bg-cyan-500" />
+        <span className="h-1.5 w-3 rounded-sm bg-cyan" />
       </span>
 
       <span className="leading-none">devflow</span>
