@@ -19,7 +19,7 @@ export function Navbar() {
     <>
       <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-md">
         <Container className="flex h-16 items-center gap-6">
-          <Logo />
+          <Logo/>
 
           {/* Desktop links */}
           <nav aria-label="Primary" className="ml-4 hidden gap-1 md:flex">

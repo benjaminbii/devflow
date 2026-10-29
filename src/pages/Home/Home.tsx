@@ -1,8 +1,9 @@
+import { Navbar } from "@/components/Navbar/Navbar";
+
 function Home() {
   return (
     <main>
-      <h1>Welcome to DevFlow</h1>
-      <p>Your developer productivity workspace.</p>
+      <Navbar/>
     </main>
   );
 }
