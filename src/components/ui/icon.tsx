@@ -28,7 +28,7 @@ export function Icon({ name, className, ...props }: IconProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={cn("size-[18px] shrink-0", className)}
+      className={cn("size-4.5 shrink-0", className)}
       {...props}
     >
       {icons[name]}
