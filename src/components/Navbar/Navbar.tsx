@@ -7,7 +7,6 @@ import { MobileSidebar } from "@/components/Sidebar/MobileSidebar";
 import { navLinks } from "./nav";
 import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "../mode-toggle";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -45,7 +44,7 @@ export function Navbar() {
                 "hidden md:inline-flex",
               )}
             >
-              <ModeToggle/>
+              <Icon name={theme === "dark" ? "moon" : "sun"} />
             </button>
 
             <a
