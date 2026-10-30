@@ -1,10 +1,15 @@
-import { Navbar } from "@/components/Navbar/Navbar";
+
+import { Hero } from "@/components/landing/Hero";
+import { Navbar } from "@/components/landing/Navbar";
 
 function Home() {
   return (
-    <main>
+   <>
       <Navbar/>
+    <main>
+      <Hero/>
     </main>
+</>
   );
 }
 
