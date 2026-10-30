@@ -13,11 +13,11 @@ export function Hero() {
 
       <Container className="relative">
         <span className="inline-flex items-center gap-2 rounded-full border border-input bg-card px-3 py-[5px] font-mono text-xs text-body">
-          <span className="size-[7px] rounded-full bg-success shadow-[0_0_0_3px] shadow-success/25" />
+          <span className="size-1.75 rounded-full bg-success shadow-[0_0_0_3px] shadow-success/25" />
           Built for developers who ship
         </span>
 
-        <h1 className="mx-auto mb-5 mt-6 max-w-[860px] text-[clamp(40px,7vw,68px)] font-[650] leading-[1.06] tracking-[-0.035em] text-foreground">
+        <h1 className="mx-auto mb-5 mt-6 max-w-215 text-[clamp(40px,7vw,68px)] font-[650] leading-[1.06] tracking-[-0.035em] text-foreground">
           One workspace for everything you build and learn
         </h1>
 
