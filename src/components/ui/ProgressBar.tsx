@@ -20,21 +20,23 @@ export function ProgressBar({
   label,
   className,
 }: ProgressBarProps) {
+    // Keep the progress value between 0 and 100.
+    const safeValue = Math.min(100,Math.max(0,value));
   return (
     <div
       role="progressbar"
       aria-label={label}
-      aria-valuenow={value}
+      aria-valuenow={safeValue}
       aria-valuemin={0}
       aria-valuemax={100}
-      className={cn("h-1.5 overflow-hidden rounded-0.75 bg-border", className)}
+      className={cn("h-1.5 overflow-hidden rounded-[3px] bg-border", className)}
     >
       <div
         className={cn(
-          "h-full origin-left animate-fill rounded-0.75 motion-reduce:animate-none",
+          "h-full origin-left animate-fill rounded-[3px] motion-reduce:animate-none",
           fills[tone],
         )}
-        style={{ width: `${value}%` }}
+        style={{ width: `${safeValue}%` }}
       />
     </div>
   );
