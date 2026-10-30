@@ -2,7 +2,7 @@ import { useEffect, useRef, type RefObject } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
 import { buttonStyles } from "@/components/ui/buttonStyles";
-import { navLinks } from "@/components/Navbar/nav";
+import { navLinks } from "@/components/landing/data/nav";
 import type { Theme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
 

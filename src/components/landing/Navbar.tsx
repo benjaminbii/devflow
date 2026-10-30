@@ -3,8 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
 import { buttonStyles } from "@/components/ui/buttonStyles";
-import { MobileSidebar } from "@/components/Sidebar/MobileSidebar";
-import { navLinks } from "./nav";
+import { MobileSidebar } from "@/components/landing/MobileSidebar";
+import { navLinks } from "./data/nav";
 import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
 
