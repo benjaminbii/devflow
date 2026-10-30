@@ -3,6 +3,8 @@ import type { BoardColumn, LearningItem, SideGroup, Stat } from "./types";
 export const sidebar: SideGroup[] = [
     {
         id: "dashboard",
+        title: "dashboard",
+        
         items: [
             { label: "Dashboard", icon: "grid", active: true },
         ],
