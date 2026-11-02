@@ -14,9 +14,9 @@ export function SectionHeading({
 }: SectionHeadingProps) {
     return (
         <div className={cn("mb-12 max-w-[640px]", className)}>
-            <h2 className="text-2xl font-bold text-foreground">{title}</h2>
+            <h2 className="mb-3 text-[clamp(28px,4vw,40px)] font-[650] leading-[1.12] tracking-[-0.025em] text-foreground">{title}</h2>
             {description && (
-                <p className="mt-2 text-lg text-muted-foreground">
+                <p className="text-lg text-muted-foreground">
                     {description}
                 </p>
             )}
