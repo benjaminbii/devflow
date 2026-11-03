@@ -1,4 +1,5 @@
 
+import { Features } from "@/components/landing/Features";
 import { Hero } from "@/components/landing/Hero";
 import { Navbar } from "@/components/landing/Navbar";
 
@@ -8,6 +9,7 @@ function Home() {
       <Navbar/>
     <main>
       <Hero/>
+      <Features/>
     </main>
 </>
   );
