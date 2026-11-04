@@ -26,6 +26,14 @@ export function Showcase() {
         e.preventDefault();
         select(active === 0 ? last : active - 1);
         break;
+      case "ArrowUp":
+        e.preventDefault();
+        select(active === 0 ? last : active - 1);
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        select(active === last ? 0 : active + 1);
+        break;
       case "Home":
         e.preventDefault();
         select(0);
