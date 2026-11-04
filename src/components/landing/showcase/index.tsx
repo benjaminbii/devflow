@@ -40,7 +40,10 @@ export function Showcase() {
   return (
     <section id="showcase" className="pb-18 md:pb-28">
       <Container>
-        <SectionHeading title="See how the pieces fit together" className="mb-8 md:mb-8" />
+        <SectionHeading
+          title="See how the pieces fit together"
+          className="mb-8 md:mb-8"
+        />
 
         <div
           role="tablist"
