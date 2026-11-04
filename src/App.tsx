@@ -1,12 +1,7 @@
-import { ThemeProvider } from "@/components/theme-provider"
-import Home from "./pages/Home/Home"
+import Home from "./pages/Home/Home";
 
 function App() {
-  return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-      <Home />
-    </ThemeProvider>
-  )
+  return <Home />;
 }
 
-export default App
+export default App;
