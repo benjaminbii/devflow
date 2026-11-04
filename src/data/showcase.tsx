@@ -1,5 +1,6 @@
 import { ProgressBar } from "@/components/ui/ProgressBar";
-import { StatusPill, type Status } from "@/components/ui/StatusPill";
+import TaskRow from "@/components/landing/showcase/TaskRow";
+import ProjectRow from "@/components/landing/showcase/ProjectRow";
 
 export type ShowcaseTab = {
   id: string;
@@ -10,34 +11,8 @@ export type ShowcaseTab = {
   preview: React.ReactNode;
 };
 
-function ProjectRow({
-  name,
-  status,
-  value,
-  tone,
-}: {
-  name: string;
-  status: Status;
-  value: number;
-  tone?: "primary" | "cyan" | "success";
-}) {
-  return (
-    <div className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 text-sm text-foreground">
-      <span>{name}</span>
-      <StatusPill status={status} />
-      <ProgressBar value={value} tone={tone} label={`${name} progress`} className="col-span-2" />
-    </div>
-  );
-}
 
-function TaskRow({ name, status }: { name: string; status: Status }) {
-  return (
-    <div className="flex items-center justify-between gap-4 text-sm text-foreground">
-      <span>{name}</span>
-      <StatusPill status={status} />
-    </div>
-  );
-}
+
 
 function TopicRow({
   name,
