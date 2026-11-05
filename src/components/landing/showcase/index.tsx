@@ -69,9 +69,9 @@ export function Showcase() {
               type="button"
               role="tab"
               aria-selected={i === active}
-              aria-controls={`panel-${t.id}`}
+              aria-controls="showcase-panel"
               tabIndex={i === active ? 0 : -1}
-              onClick={() => setActive(i)}
+              onClick={() => select(i)}
               className={cn(
                 "cursor-pointer rounded-md px-4 py-[7px] text-sm font-medium transition-colors",
                 i === active
@@ -103,7 +103,7 @@ export function Showcase() {
           <div
             key={tab.id}
             role="tabpanel"
-            id={`panel-${tab.id}`}
+            id="showcase-panel"
             aria-labelledby={`tab-${tab.id}`}
             tabIndex={0}
             className="grid animate-fade-in gap-2.5 rounded-lg border border-border bg-card p-4 motion-reduce:animate-none"

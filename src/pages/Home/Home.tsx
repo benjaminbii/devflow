@@ -20,9 +20,9 @@ function Home() {
       <StatsStrip/>
       <Showcase/>
       <WhyDevFlow/>
-      <FinalCTA/>
-      <Footer/>
+      <FinalCTA/>    
     </main>
+    <Footer/>
 </>
   );
 }
