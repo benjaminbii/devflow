@@ -12,7 +12,7 @@ export function Hero() {
       />
 
       <Container className="relative">
-        <span className="inline-flex items-center gap-2 rounded-full border border-input bg-card px-3 py-[5px] font-mono text-xs text-body">
+        <span className="inline-flex items-center gap-2 rounded-full border border-input bg-card px-3 py-1.25 font-mono text-xs text-body">
           <span className="size-1.75 rounded-full bg-success shadow-[0_0_0_3px] shadow-success/25" />
           Built for developers who ship
         </span>
@@ -21,7 +21,7 @@ export function Hero() {
           One workspace for everything you build and learn
         </h1>
 
-        <p className="mx-auto max-w-[580px] text-lg">
+        <p className="mx-auto max-w-145 text-lg">
           Manage projects, tasks, notes and learning progress in one fast
           workspace, and see how you are actually improving.
         </p>
