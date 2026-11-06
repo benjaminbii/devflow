@@ -7,6 +7,24 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>devflow</title>
+
+    <!--
+  Runs before first paint so a returning light-theme user never sees a dark flash.
+  It must read the same key and JSON shape that the Zustand `persist` middleware
+  writes in src/stores/uiStore.ts: { state: { theme }, version }.
+  Dark is the default, so we only skip adding the class for an explicit "light".
+-->
+    <script>
+      try {
+        var saved = JSON.parse(localStorage.getItem("devflow-ui") || "{}");
+        if (!saved.state || saved.state.theme !== "light") {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {
+        // Storage blocked or corrupt JSON: fall back to the default theme.
+        document.documentElement.classList.add("dark");
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
