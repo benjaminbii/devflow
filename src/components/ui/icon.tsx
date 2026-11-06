@@ -21,7 +21,9 @@ const icons = {
       <rect x="14" y="14" width="7" height="7" rx="1" />
     </>
   ),
-  folder: <path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />,
+  folder: (
+    <path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+  ),
   check: (
     <>
       <rect x="3" y="3" width="18" height="18" rx="3" />
@@ -29,7 +31,9 @@ const icons = {
     </>
   ),
   book: <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 19a2 2 0 002 2h13" />,
-  note: <path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5" />,
+  note: (
+    <path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5" />
+  ),
   chart: <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />,
   search: (
     <>
@@ -56,6 +60,13 @@ const icons = {
       <circle cx="12" cy="12" r="3" />
     </>
   ),
+  "eye-off": (
+    <>
+      <path d="M3 3l18 18" />
+      <path d="M10.6 6.1A9.8 9.8 0 0112 6c6 0 10 6 10 6a17 17 0 01-3.2 3.7M6.6 6.6A17 17 0 002 12s4 6 10 6a9.7 9.7 0 004-.9" />
+      <path d="M9.9 9.9a3 3 0 004.2 4.2" />
+    </>
+  ),
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof icons;
@@ -72,7 +83,10 @@ export function Icon({ name, className, ...props }: IconProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={cn("size-4.5 shrink-0 transition duration-500 ease-in-out transform scale-105", className)}
+      className={cn(
+        "size-4.5 shrink-0 transition duration-500 ease-in-out transform scale-105",
+        className,
+      )}
       {...props}
     >
       {icons[name]}
