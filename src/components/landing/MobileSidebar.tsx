@@ -1,10 +1,11 @@
-import { useEffect, useRef, type RefObject } from "react";
+import { useRef, type RefObject } from "react";
 import { Icon } from "@/components/ui/Icon";
 import { Logo } from "@/components/ui/Logo";
 import { buttonStyles } from "@/components/ui/buttonStyles";
 import { navLinks } from "@/components/landing/data/nav";
 import type { Theme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
+import { useModalBehavior } from "@/hooks/useModalBehavior";
 
 type MobileSidebarProps = {
   open: boolean;
@@ -16,7 +17,6 @@ type MobileSidebarProps = {
   returnFocusRef: RefObject<HTMLElement | null>;
 };
 
-const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export function MobileSidebar({
   open,
@@ -28,51 +28,14 @@ export function MobileSidebar({
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (!open) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
-    const trigger = returnFocusRef.current;
-
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
-      if (e.key !== "Tab") return;
-
-      // Keep Tab / Shift+Tab inside the sidebar while it is open.
-      const items = panelRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE);
-      if (!items || items.length === 0) return;
-      const first = items[0];
-      const last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-
-    // If the viewport grows to desktop width, the sidebar is no longer needed.
-    const desktop = window.matchMedia("(min-width: 768px)");
-    function onBreakpointChange(e: MediaQueryListEvent) {
-      if (e.matches) onClose();
-    }
-
-    document.addEventListener("keydown", onKeyDown);
-    desktop.addEventListener("change", onBreakpointChange);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", onKeyDown);
-      desktop.removeEventListener("change", onBreakpointChange);
-      trigger?.focus();
-    };
-  }, [open, onClose, returnFocusRef]);
+  useModalBehavior({
+    open,
+    onClose,
+    panelRef,
+    initialFocusRef: closeButtonRef,
+    returnFocusRef,
+    closeAtMinWidth: 768,
+  });
 
   return (
     <div
