@@ -67,6 +67,29 @@ const icons = {
       <path d="M9.9 9.9a3 3 0 004.2 4.2" />
     </>
   ),
+  user: (
+    <>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0116 0" />
+    </>
+  ),
+  settings: (
+    <>
+      <path d="M4 6h8M16 6h4M4 12h2M10 12h10M4 18h10M18 18h2" />
+      <circle cx="14" cy="6" r="2" />
+      <circle cx="8" cy="12" r="2" />
+      <circle cx="16" cy="18" r="2" />
+    </>
+  ),
+  "log-out": (
+    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
+  ),
+  "panel-left": (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M9 4v16" />
+    </>
+  ),
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof icons;
