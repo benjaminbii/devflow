@@ -34,7 +34,7 @@ export function LoginPage() {
       <h1 className="text-2xl font-semibold tracking-[-0.02em] text-foreground">Welcome back</h1>
       <p className="mt-1 text-sm">Log in to your DevFlow workspace.</p>
 
-      <form onSubmit={onSubmit} noValidate className="mt-6 grid gap-4">
+      <form onSubmit={onSubmit}  className="mt-6 grid gap-4">
         <Field
           label="Email"
           name="email"

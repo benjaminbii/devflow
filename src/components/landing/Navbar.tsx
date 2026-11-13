@@ -7,6 +7,7 @@ import { MobileSidebar } from "@/components/landing/MobileSidebar";
 import { navLinks } from "./data/nav";
 import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -18,7 +19,7 @@ export function Navbar() {
     <>
       <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-md">
         <Container className="flex h-16 items-center gap-6">
-          <Logo/>
+          <Logo />
 
           {/* Desktop links */}
           <nav aria-label="Primary" className="ml-4 hidden gap-1 md:flex">
@@ -47,15 +48,21 @@ export function Navbar() {
               <Icon name={theme === "dark" ? "moon" : "sun"} />
             </button>
 
-            <a
-              href="#"
-              className={cn(buttonStyles({ variant: "ghost" }), "hidden md:inline-flex")}
+            <Link
+              to="/login"
+              className={cn(
+                buttonStyles({ variant: "ghost" }),
+                "hidden md:inline-flex",
+              )}
             >
               Log in
-            </a>
-            <a href="#" className={buttonStyles({ variant: "primary" })}>
+            </Link>
+            <Link
+              to="/register"
+              className={buttonStyles({ variant: "primary" })}
+            >
               Get started
-            </a>
+            </Link>
 
             <button
               ref={menuButtonRef}

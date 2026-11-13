@@ -1,5 +1,4 @@
-import { createBrowserRouter, Outlet } from "react-router";
-import { ScrollManager } from "./components/layout/ScrollManager";
+import { createBrowserRouter} from "react-router";
 import Home from "./pages/Home";
 import { AuthLayout } from "./components/layout/AuthLayout";
 import { redirectIfAuthed, requireAuth } from "./lib/authGuards";
@@ -9,15 +8,9 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { AppLayout } from "./components/layout/AppLayout";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { RootLayout } from "./layouts/RootLayout";
 
-function RootLayout() {
-  return (
-    <>
-      <ScrollManager />
-      <Outlet />
-    </>
-  );
-}
+
 
 export const router = createBrowserRouter([
   {
