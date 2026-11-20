@@ -117,7 +117,7 @@
 
   --animate-progress: progress 2.2s linear both;
 
-  @keyframe progress {
+  @keyframes progress {
     from {
       width: 0;
     }
