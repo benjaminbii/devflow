@@ -6,6 +6,7 @@ import { navLinks } from "@/components/landing/data/nav";
 import type { Theme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
 import { useModalBehavior } from "@/hooks/useModalBehavior";
+import { Link } from "react-router";
 
 type MobileSidebarProps = {
   open: boolean;
@@ -94,20 +95,20 @@ export function MobileSidebar({
         </nav>
 
         <div className="grid shrink-0 gap-3 border-t border-border p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
-          <a
-            href="#"
+          <Link
+            to="/login"
             onClick={onClose}
             className={buttonStyles({ variant: "outline", size: "lg", className: "w-full" })}
           >
             Log in
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/register"
             onClick={onClose}
             className={buttonStyles({ variant: "primary", size: "lg", className: "w-full" })}
           >
             Get started
-          </a>
+          </Link>
           <button
             type="button"
             onClick={onToggleTheme}
