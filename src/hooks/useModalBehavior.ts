@@ -4,16 +4,16 @@ const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1
 
 
 type Options = {
-  open: boolean;
-  /** Must be referentially stable (useCallback or a store action), or the effect re-runs every render. */
-  onClose: () => void;
-  panelRef: RefObject<HTMLElement | null>;
-  /** Element that receives focus when the drawer opens (usually the close button). */
-  initialFocusRef: RefObject<HTMLElement | null>;
-  /** Element that regains focus on close (the button that opened the drawer). */
-  returnFocusRef: RefObject<HTMLElement | null>;
-  /** Close automatically once the viewport reaches this width, where the drawer is hidden by CSS. */
-  closeAtMinWidth: number;
+    open: boolean;
+    /** Must be referentially stable (useCallback or a store action), or the effect re-runs every render. */
+    onClose: () => void;
+    panelRef: RefObject<HTMLElement | null>;
+    /** Element that receives focus when the drawer opens (usually the close button). */
+    initialFocusRef: RefObject<HTMLElement | null>;
+    /** Element that regains focus on close (the button that opened the drawer). */
+    returnFocusRef: RefObject<HTMLElement | null>;
+    /** Close automatically once the viewport reaches this width, where the drawer is hidden by CSS. */
+    closeAtMinWidth: number;
 };
 
 /**
@@ -33,16 +33,23 @@ export function useModalBehavior({
     useEffect(() => {
         if (!open) return;
 
+        // Check whether the viewport is already at the desktop breakpoint.
+        const wide = window.matchMedia(`(min-width: ${closeAtMinWidth}px)`);
+        if (wide.matches) {
+            onClose();
+            return;
+        }
+
         // Stop the page behind the drawer from scrolling; restore whatever was there before.
         const previousOverflow = document.body.style.overflow;
         document.body.style.overflow = "hidden";
 
 
         initialFocusRef.current?.focus();
-         // Captured now: the ref could point elsewhere by the time cleanup runs.
-         const trigger = returnFocusRef.current;
+        // Captured now: the ref could point elsewhere by the time cleanup runs.
+        const trigger = returnFocusRef.current;
 
-         function onKeyDown(e: KeyboardEvent) {
+        function onKeyDown(e: KeyboardEvent) {
             if (e.key === "Escape") {
                 onClose();
                 return;
@@ -63,25 +70,25 @@ export function useModalBehavior({
                 e.preventDefault();
                 first.focus();
             }
-         }
+        }
 
-           // Rotating a tablet or resizing a window can make the drawer's CSS hide it
-           // while state still says "open", which would leave scroll locked. Close it.
-           const wide = window.matchMedia(`(min-width: ${closeAtMinWidth}px)`);
-           function onBreakpointChange(e: MediaQueryListEvent) {
+        // Rotating a tablet or resizing a window can make the drawer's CSS hide it
+        // while state still says "open", which would leave scroll locked. Close it.
+
+        function onBreakpointChange(e: MediaQueryListEvent) {
             if (e.matches) onClose();
-           }
+        }
 
-           document.addEventListener("keydown", onKeyDown);
-           wide.addEventListener("change", onBreakpointChange);    
+        document.addEventListener("keydown", onKeyDown);
+        wide.addEventListener("change", onBreakpointChange);
 
 
-         return () =>{
+        return () => {
             document.body.style.overflow = previousOverflow;
             document.removeEventListener("keydown", onKeyDown);
             wide.removeEventListener("change", onBreakpointChange);
             trigger?.focus();
-         };
+        };
 
 
 
