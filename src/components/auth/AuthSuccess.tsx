@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router";
-import { Icon } from "../ui/Icon";
+import { Icon } from "@/components/ui/Icon";
 import { buttonStyles } from "../ui/buttonStyles";
 
 const REDIRECT_MS = 2200; // keep equal to --animate-progress's duration in index.css
@@ -24,12 +24,12 @@ export function AuthSuccess({
       () => navigate("/dashboard", { replace: true }),
       REDIRECT_MS,
     );
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // cancel if the user clicks the button first
   }, [navigate]);
 
   return (
     <div className="text-center" aria-live="polite">
-      <div className="mx-auto mb-5 grid size-14 place-item-center rounded-[14px] bg-success/15 text-success">
+      <div className="mx-auto mb-5 grid size-14 place-items-center rounded-[14px] bg-success/15 text-success">
         <Icon name="ok" className="size-7" />
       </div>
       <h1
@@ -45,15 +45,16 @@ export function AuthSuccess({
       <div className="mx-auto mb-5 h-1 max-w-[240px] overflow-hidden rounded-[2px] bg-border">
         <i className="block h-full w-full animate-progress bg-primary-hover" />
       </div>
+
       <Link
         to="/dashboard"
         replace
         className={buttonStyles({
           size: "lg",
-          className: "mx-auto w-full max-w-[240px",
+          className: "mx-auto w-full max-w-[240px]",
         })}
       >
-        GO to dashboard
+        Go to dashboard
       </Link>
     </div>
   );
