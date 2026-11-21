@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import { Icon } from "@/components/ui/Icon";
 import { buttonStyles } from "../ui/buttonStyles";
 
@@ -15,17 +15,38 @@ export function AuthSuccess({
   const navigate = useNavigate();
   const headingRef = useRef<HTMLHeadingElement>(null);
 
+  function getSafeReturnTo(returnTo: string | null): string {
+    if (!returnTo || !returnTo.startsWith("/") || returnTo.startsWith("//")) {
+      return "/dashboard";
+    }
+
+    try {
+      const url = new URL(returnTo, window.location.origin);
+
+      if (url.origin !== window.location.origin) {
+        return "/dashboard";
+      }
+
+      return `${url.pathname}${url.search}${url.hash}`;
+    } catch {
+      return "/dashboard";
+    }
+  }
+
+  const [searchParams] = useSearchParams();
+  const destination = getSafeReturnTo(searchParams.get("returnTo"));
+
   useEffect(() => {
     headingRef.current?.focus();
     // Auto-redirect, with the button below as an escape hatch for people who don't
     // want to wait (and for anyone who needs more time to read the message).
     // `replace` keeps this success screen out of the Back button history.
     const timer = setTimeout(
-      () => navigate("/dashboard", { replace: true }),
+      () => navigate(destination, { replace: true }),
       REDIRECT_MS,
     );
     return () => clearTimeout(timer); // cancel if the user clicks the button first
-  }, [navigate]);
+  }, [navigate, destination]);
 
   return (
     <div className="text-center" aria-live="polite">
@@ -47,14 +68,14 @@ export function AuthSuccess({
       </div>
 
       <Link
-        to="/dashboard"
+        to={destination}
         replace
         className={buttonStyles({
           size: "lg",
           className: "mx-auto w-full max-w-[240px]",
         })}
       >
-        Go to dashboard
+        Continue
       </Link>
     </div>
   );

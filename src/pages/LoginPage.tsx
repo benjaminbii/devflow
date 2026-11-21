@@ -133,6 +133,7 @@ export function LoginPage() {
 
         <Checkbox
           checked={remember}
+          disabled={submitting}
           onChange={(e) => setRemember(e.target.checked)}
         >
           Keep me logged in on this device

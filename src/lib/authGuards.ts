@@ -7,9 +7,14 @@ import { useAuthStore } from "@/stores/authStore";
  * store with getState() because loaders run outside React and can't use hooks.
  */
 
-export function requireAuth() {
-    if(!useAuthStore.getState().user) throw redirect("/login");
-    return null; // loaders must return something; null means "nothing to load"
+export function requireAuth({ request }: { request: Request }) {
+  if (!useAuthStore.getState().user) {
+    const url = new URL(request.url);
+    const returnTo = `${url.pathname}${url.search}`;
+
+    throw redirect(`/login?returnTo=${encodeURIComponent(returnTo)}`);
+  };
+  return null; // loaders must return something; null means "nothing to load"
 }
 
 /** The reverse guard: a logged-in user has no reason to see /login or /register. */

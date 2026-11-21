@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useRef, useState, type SubmitEvent } from "react";
 import { Link } from "react-router";
 import { AuthHeading } from "@/components/auth/AuthHeading";
 import { AuthSuccess } from "@/components/auth/AuthSuccess";
@@ -40,7 +40,7 @@ export function RegisterPage() {
   // Holds the first name once registration succeeds; swaps the form for the success view.
   const [welcomeName, setWelcomeName] = useState<string | null>(null);
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     if (submitting) return; // disabled button covers clicks; this covers Enter key repeats
 
