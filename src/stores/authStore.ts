@@ -22,21 +22,62 @@ type PersistedAuth = Pick<AuthState, "user" | "remember">;
  * Reads check both stores; writes go to one and clear the other, so switching the
  * choice on a later login never leaves a stale copy behind.
  */
+
 const storage = createJSONStorage<PersistedAuth>(() => ({
-    getItem: (key) => localStorage.getItem(key) ?? sessionStorage.getItem(key),
-    setItem: (key, value) => {
-        // `value` is already the serialized { state, version } envelope from persist.
-        const { state } = JSON.parse(value) as { state: PersistedAuth };
-        const [keep, drop] =
-            state.remember === false ? [sessionStorage, localStorage] : [localStorage, sessionStorage];
-        keep.setItem(key, value);
-        drop.removeItem(key);
+    getItem: (key) => {
+        // Try localStorage first.
+        try {
+            const value = localStorage.getItem(key);
+            if (value !== null) return value;
+        } catch {
+            // localStorage may be unavailable. Try sessionStorage instead.
+        }
+
+        try {
+            return sessionStorage.getItem(key);
+        } catch {
+            return null;
+        }
     },
+
+    setItem: (key, value) => {
+        try {
+            // `value` is the serialized { state, version } envelope from persist.
+            const { state } = JSON.parse(value) as { state: PersistedAuth };
+
+            const keep =
+                state.remember === false ? sessionStorage : localStorage;
+            const drop =
+                state.remember === false ? localStorage : sessionStorage;
+
+            keep.setItem(key, value);
+
+            try {
+                drop.removeItem(key);
+            } catch {
+                // The old copy may remain, but the current session still works.
+            }
+        } catch {
+            // Persistence failure must not prevent in-memory authentication.
+        }
+    },
+
     removeItem: (key) => {
-        localStorage.removeItem(key);
-        sessionStorage.removeItem(key);
+        // Try both independently so one failure doesn't prevent the other.
+        try {
+            localStorage.removeItem(key);
+        } catch {
+            // Ignore unavailable localStorage.
+        }
+
+        try {
+            sessionStorage.removeItem(key);
+        } catch {
+            // Ignore unavailable sessionStorage.
+        }
     },
 }));
+
 
 /**
  * Session state. Zustand fits because the route guard (src/lib/authGuards.ts)
