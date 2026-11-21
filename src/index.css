@@ -106,11 +106,20 @@
       transform: scaleX(0);
     }
   }
+
   --animate-fade-in: fade-in 0.2s ease-out;
 
   @keyframes fade-in {
     from {
       opacity: 0;
+    }
+  }
+
+  --animate-progress: progress 2.2s linear both;
+
+  @keyframes progress {
+    from {
+      width: 0;
     }
   }
 }
@@ -167,4 +176,21 @@
 @utility fade-bottom {
   -webkit-mask-image: linear-gradient(#000 70%, transparent);
   mask-image: linear-gradient(#000 70%, transparent);
+}
+
+/* Softer grid for the auth brand panel. The mask is centered, not top-anchored
+   like the hero's, because the panel's content sits in the middle. */
+
+@utility bg-grid-center {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.4;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    #000,
+    transparent
+  );
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000, transparent);
 }

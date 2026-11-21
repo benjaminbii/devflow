@@ -21,7 +21,9 @@ const icons = {
       <rect x="14" y="14" width="7" height="7" rx="1" />
     </>
   ),
-  folder: <path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />,
+  folder: (
+    <path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+  ),
   check: (
     <>
       <rect x="3" y="3" width="18" height="18" rx="3" />
@@ -29,7 +31,9 @@ const icons = {
     </>
   ),
   book: <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 19a2 2 0 002 2h13" />,
-  note: <path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5" />,
+  note: (
+    <path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5" />
+  ),
   chart: <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />,
   search: (
     <>
@@ -56,6 +60,52 @@ const icons = {
       <circle cx="12" cy="12" r="3" />
     </>
   ),
+  "eye-off": (
+    <>
+      <path d="M3 3l18 18" />
+      <path d="M10.6 6.1A9.8 9.8 0 0112 6c6 0 10 6 10 6a17 17 0 01-3.2 3.7M6.6 6.6A17 17 0 002 12s4 6 10 6a9.7 9.7 0 004-.9" />
+      <path d="M9.9 9.9a3 3 0 004.2 4.2" />
+    </>
+  ),
+  user: (
+    <>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0116 0" />
+    </>
+  ),
+  settings: (
+    <>
+      <path d="M4 6h8M16 6h4M4 12h2M10 12h10M4 18h10M18 18h2" />
+      <circle cx="14" cy="6" r="2" />
+      <circle cx="8" cy="12" r="2" />
+      <circle cx="16" cy="18" r="2" />
+    </>
+  ),
+  "log-out": (
+    <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
+  ),
+  "panel-left": (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M9 4v16" />
+    </>
+  ),
+
+  // Filled glyph: render with <Icon name="github" fill="currentColor" stroke="none" />.
+  // Props are spread after the defaults, so those two overrides win.
+  github: (
+    <path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.7 9.7 0 015 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.8v2.7c0 .3.2.6.7.5A10 10 0 0012 2z" />
+  ),
+  alert: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 8v5M12 16h.01" />
+    </>
+  ),
+  flame: (
+    <path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z" />
+  ),
+  tick: <path d="M5 12l5 5 9-10" />,
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof icons;
@@ -72,7 +122,10 @@ export function Icon({ name, className, ...props }: IconProps) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={cn("size-4.5 shrink-0 transition duration-500 ease-in-out transform scale-105", className)}
+      className={cn(
+        "size-4.5 shrink-0 transition duration-500 ease-in-out transform scale-105",
+        className,
+      )}
       {...props}
     >
       {icons[name]}
