@@ -73,14 +73,6 @@ const icons = {
       <path d="M4 21a8 8 0 0116 0" />
     </>
   ),
-  settings: (
-    <>
-      <path d="M4 6h8M16 6h4M4 12h2M10 12h10M4 18h10M18 18h2" />
-      <circle cx="14" cy="6" r="2" />
-      <circle cx="8" cy="12" r="2" />
-      <circle cx="16" cy="18" r="2" />
-    </>
-  ),
   "log-out": (
     <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
   ),
@@ -106,6 +98,14 @@ const icons = {
     <path d="M12 3c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z" />
   ),
   tick: <path d="M5 12l5 5 9-10" />,
+  bell: <path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 004 0" />,
+  plus: <path d="M12 5v14M5 12h14" />,
+  settings: (
+    <>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" />
+    </>
+  ),
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof icons;

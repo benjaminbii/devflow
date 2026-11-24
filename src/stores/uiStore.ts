@@ -5,7 +5,8 @@ export type Theme = 'light' | 'dark';
 
 interface UiState {
     theme: Theme;
-    /** Desktop sidebar: icon-only when true. A preference, so it is persisted. */
+    /** Wide screens: sidebar hidden entirely (Ctrl/⌘+B or the top-bar button), as in
+   *  the design. Not persisted: persisted layout preferences are out of scope. */
     sidebarCollapsed: boolean;
     /** Mobile sidebar drawer. Transient, so it is NOT persisted (see partialize). */
     mobileNavOpen: boolean;
